@@ -1,0 +1,109 @@
+A)SELECT COUNT(idMulta), nomeMotorista From tbMultas
+INNER JOIN tbVeiculo ON tbVeiculo.idVeiculo=tbMultas.idVeiculo
+INNER JOIN tbMotorista ON tbMotorista.idMotorista=tbVeiculo.idMotorista
+GROUP BY nomeMotorista
+
+B)SELECT placa, nomeMotorista From tbVeiculo
+INNER JOIN tbMotorista ON tbVeiculo.idMotorista=tbMotorista.idMotorista
+
+c)SELECT COUNT(idVeiculo), cpfMotorista FROM tbVeiculo
+INNER JOIN tbMotorista ON tbVeiculo.idMotorista=tbMotorista.idMotorista
+GROUP BY cpfMotorista
+
+D)SELECT nomeMotorista FROM tbMotorista
+INNER JOIN tbVeiculo ON tbVeiculo.idMotorista=tbMotorista.idMotorista
+INNER JOIN tbMultas ON tbVeiculo.idVeiculo=tbMultas.idVeiculo
+WHERE pontosMulta=7 AND DATEPART (MONTH,dataMulta)=3 AND DATEPART (YEAR,dataMulta)=2022
+
+E)SELECT dataMulta FROM tbMultas
+INNER JOIN tbVeiculo ON tbVeiculo.idVeiculo=tbMultas.idVeiculo
+INNER JOIN tbMotorista ON tbMotorista.idMotorista=tbVeiculo.idMotorista
+WHERE cpfMotorista LIKE '123.456.789-00'
+
+
+Adicionar o nome do aluno ou da dupla que resolveu esse questionário
+Guilherme de Oliveira Machado E Giovanna Eduarda Damasceno Reis.
+2
+Assinale a alternativa que contém apenas comandos DDL (estruturais) do SQL Server:
+(1 Ponto)
+
+INSERT, UPDATE e DELETE
+
+INSERT, UPDATE e DELETE
+
+CREATE, DROP e ALTER (X)
+
+CREATE, DROP e INSERT
+
+Nenhuma das anteriores
+3
+Assinale a alternativa que contem uma opção correta para se inserir dados em uma tabela do SQL Server chamada tbAluno, que possui os atributos idAluno, nomeAluno, dtNascAluno e rgAluno, e as propriedades PRIMARY KEY e IDENTITY(1,1) setadas na coluna idAluno:
+(1 Ponto)
+
+INSERT tbAluno (nomeAluno, dtNascAluno, rgAluno) VALUES ('Ana Maria', '10/02/2005', '543443422')
+
+INSERT INTO tbAluno (nomeAluno, dtNascAluno, rgAluno) VALUES ('Ana Maria', '10/02/2005', '543443422') (X)
+
+CREATE INTO tbAluno (nomeAluno, dtNascAluno, rgAluno) VALUES ('Ana Maria', '10/02/2005', '543443422')
+
+SET tbAluno (nomeAluno, dtNascAluno, rgAluno) VALUES ('Ana Maria', '10/02/2005', '543443422')
+
+Nenhuma das anteriores
+4
+Para responder às questões 3, 4 e 5 utilizar o MER em anexo chamado bdMotorista.
+
+
+
+Qual seria a opção correta para se obter o nome do motorista ao lado da quantidade de multas que ele tomou:
+(1 Ponto)
+
+
+SELECT nomeMotorista, COUNT(idMulta) FROM tbMotorista INNER JOIN tbVeiculo ON tbMotorista.idMotorista = tbVeiculo.idVeiculo INNER JOIN tbMultas ON tbVeiculo.idVeiculo = tbMultas.idMulta GROUP BY nomeMotorista
+
+SELECT nomeMotorista, COUNT(idMulta) FROM tbMotorista INNER JOIN tbVeiculo ON tbMotorista.idMotorista = tbVeiculo.idMotorista INNER JOIN tbMultas ON tbVeiculo.idVeiculo = tbMultas.idVeiculo ORDER BY nomeMotorista
+
+SELECT nomeMotorista, COUNT(idMulta) FROM tbMotorista INNER JOIN tbVeiculo ON tbMotorista.idMotorista = tbVeiculo.idMotorista INNER JOIN tbMultas ON tbVeiculo.idVeiculo = tbMultas.idVeiculo GROUP BY nomeMotorista(x)
+
+SELECT nomeMotorista, COUNT(idMulta) FROM tbMotorista INNER JOIN tbVeiculo ON tbMotorista.idMotorista = tbVeiculo.idMotorista INNER JOIN tbMultas ON tbVeiculo.idVeiculo = tbMultas.idVeiculo
+
+Nenhuma das anteriores
+5
+Um motorista chamado ‘José dos Santos’ que possui cpf ‘099.578.457-30’ cadastrado nesse banco de dados possuía 3 veículos. Assinale a alternativa correta para se exibir numa consulta apenas o nome desse motorista, seu cpf e as placas dos seus três veículos:
+(1 Ponto)
+
+SELECT nomeMotorista, cpfMotorista, placa FROM tbMotorista INNER JOIN tbVeiculo ON tbMotorista.idMotorista = tbVeiculo.idMotorista WHERE cpfMotorista LIKE '099.578.457-30'
+
+SELECT nomeMotorista, cpfMotorista, placa FROM tbMotorista INNER JOIN tbVeiculo ON tbMotorista.idMotorista = tbVeiculo.idMotorista WHERE cpfMotorista LIKE '099.578.457-30' GROUP BY nomeMotorista
+
+SELECT nomeMotorista, cpfMotorista, placa FROM tbMotorista INNER JOIN tbVeiculo ON tbMotorista.idMotorista = tbVeiculo.idVeiculo WHERE cpfMotorista LIKE '099.578.457-30' 
+
+SELECT nomeMotorista, cpfMotorista, placa FROM tbMotorista INNER JOIN tbVeiculo ON tbMotorista.idMotorista = tbVeiculo.idMotorista WHERE nomeMotorista LIKE 'Jose%'
+
+Nenhuma das anteriores
+6
+O Departamento de trânsito irá notificar via correspondência todos os motoristas que atingiram a pontuação maxima acumulada de 20 pontos no periodo de 01/05/2021 a 31/05/2021. Para tal, deverá somar cada uma de suas multas e exibir essa pontuação ao lado do número de sua CNH (Carteira Nacional de Habilitação). Qual das opções abaixo  representa uma forma correta de se obter a soma dos pontos de cada motorista, agrupados por seu nome, somente daqueles que possuem acima de 20 pontos acumulados no periodo informado acima:
+(1 Ponto)
+
+SELECT CNHMotorista, SUM(pontosMulta) FROM tbMotorista INNER JOIN tbVeiculo ON tbMotorista.idMotorista = tbVeiculo.idMotorista FULL JOIN tbMultas ON tbVeiculo.idVeiculo = tbMultas.idVeiculo WHERE dataMulta BETWEEN '01/05/2021' AND ''31/05/2021'  ORDER BY CNHMotorista
+
+SELECT CNHMotorista, COUNT(pontosMulta) FROM tbMotorista INNER JOIN tbVeiculo ON tbMotorista.idMotorista = tbVeiculo.idMotorista INNER JOIN tbMultas ON tbVeiculo.idVeiculo = tbMultas.idVeiculo WHERE dataMulta BETWEEN '01/05/2021' AND ''31/05/2021' 
+
+SELECT CNHMotorista, SUM(idMulta) FROM tbMotorista INNER JOIN tbVeiculo ON tbMotorista.idMotorista = tbVeiculo.idMotorista INNER JOIN tbMultas ON tbVeiculo.idVeiculo = tbMultas.idVeiculo WHERE dataMulta BETWEEN '01/05/2021' AND ''31/05/2021' 
+
+SELECT CNHMotorista, SUM(pontosMulta) FROM tbMotorista INNER JOIN tbVeiculo ON tbMotorista.idMotorista = tbVeiculo.idMotorista INNER JOIN tbMultas ON tbVeiculo.idVeiculo = tbMultas.idVeiculo WHERE dataMulta BETWEEN '01/05/2021' AND ''31/05/2021' GROUP BY CNHMotorista
+
+Nenhuma das anteriores
+7
+Criar os SELECTs para se obter o que se pede:
+
+
+a) Obter a quantidade de multas aplicadas por nome do motorista
+
+b) Obter as placas dos veículos ao lado do nome dos motoristas
+
+c) Obter a quantidade de carros pelo cpf do motorista
+
+d) Apresentar o nome dos motoristas que tomaram multas de 7 pontos em março de 2022
+
+e) Todas as multas do motorista de cpf '123.456.789-00'
+(5 Pontos)
